@@ -1,27 +1,33 @@
 
 
 
-#INTRODUCTION                                
+# INTRODUCTION                                
 This is a Monte Carlo simulation program for the Ising spin model   
 written by Aditya Dendukuri. Simulations include free energy        
 construction [1], nucleus formation [2] with umbrella sampling [1]. 
 
-#INSTRUCTIONS TO RUN                              
+# INSTRUCTIONS TO RUN                              
 1. Create the directories build/ and output/                        
-          >> mkdir build output                                     
+          ``` 
+          $ mkdir build output                                     
+          ```                                    
                                                                     
 2. Go to build directory and run cmake as follows                   
-          >> cd build                                               
-          >> cmake -C ../ -S .                                      
-                                                                    
+          ```
+          $ cd build                                               
+          $ cmake -C ../ -S .                                      
+          ```
+          
 3. This will generate the makefile. Compile the program by simply   
-   typing:                                                          
-          >> make                                                   
-                                                                    
-4. Run the executable                                               
-          >> ./IsingNucl                                            
-
-#SIMULATION SETUP AND ANALYSIS                        
+   typing:       
+          ```
+          $ make                                                   
+          ```                                                       
+4. Run the executable           
+          ```
+          $ ./IsingNucl                                            
+          ```
+# SIMULATION SETUP AND ANALYSIS                        
 Pleaser refer to "main.c" for the steps to invoke the simulation.   
 There are three experiments pre-coded in "src/simul.c".             
 
@@ -44,7 +50,7 @@ There are three experiments pre-coded in "src/simul.c".
     energy construction.                                            
     [simulaton video](https://youtu.be/6_lvSokWUsw)       
 
-#IMPORTANT POINTS                               
+# IMPORTANT POINTS                               
 1. The lattice size, defined in main (int n) is the sidelength of   
    the lattice square (not number of spins). That means that        
    number of spins = n * n.        
@@ -60,7 +66,7 @@ There are three experiments pre-coded in "src/simul.c".
    skip some steps before adding a frame to the video to avoid      
    stack overflow issues.                                           
 
-#REFERENCES                                   
+# REFERENCES                                   
  [1] Chandler, David. Introduction to modern statistical mechanics. 
      1987.                                                          
                                                                     
