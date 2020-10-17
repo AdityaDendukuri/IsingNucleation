@@ -12,27 +12,27 @@ construction [1], nucleus formation [2] with umbrella sampling [1].
 $ git clone https://github.com/AdityaDendukuri/IsingNucleation.git
 ```
 2. Create the directories build/ and output/                        
-          ``` 
-          $ mkdir build output                                     
-          ```                                    
+``` 
+$ mkdir build output                                     
+```                                    
                                                                     
 3. Go to build directory and run cmake as follows (you only nedd to do this the first time)                   
-          ```
-          $ cd build
-          ```  
-          ```
-          $ cmake -C ../ -S .                                      
-          ```
+```
+$ cd build
+```  
+```
+$ cmake -C ../ -S .                                      
+```
           
 4. This will generate the makefile in build/. Compile the program by simply   
    typing:       
-          ```
-          $ make                                                   
-          ```                                                       
+```
+$ make                                                   
+```                                                       
 5. Run the executable           
-          ```
-          $ ./IsingNucl                                            
-          ```
+ ```
+ $ ./IsingNucl                                            
+ ```
 # SIMULATION SETUP AND ANALYSIS                        
 Pleaser refer to "main.c" for the steps to invoke the simulation.   
 There are three experiments pre-coded in "src/simul.c".             
