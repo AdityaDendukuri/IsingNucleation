@@ -40,15 +40,13 @@ There are three experiments pre-coded in "src/simul.c".
 1. run_sim()                                                        
     Classic Metropolis Monte Carlo 2D Ising Lattice Simulation.     
     [simulation video](https://youtu.be/HaPEz-NQ8I4)                
-
-2. validate_free_energy()                                           
+1. validate_free_energy()                                           
    Validating simulation by running simulations at various          
    temperatures and comparing the minimum energy of each            
    temperature with the exact solution. Run the simulation          
    and free energy construction in the python jupyter notebook      
    "free_energy.ipynb"                                              
-
-3. run_sim_nucleation()                                             
+1. run_sim_nucleation()                                             
     Simulation of nucleus formation in 2D Ising System simulated    
     via umbrella sampling (also known as non boltzmann sampling)      
     with a overlapping windows from N = 15 to 450. Refer to         
