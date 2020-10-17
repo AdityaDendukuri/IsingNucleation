@@ -39,10 +39,10 @@ Pleaser refer to "main.c" for the steps to invoke the simulation. There are thre
 1. run_sim_nucleation()                                             
    Simulation of nucleus formation in 2D Ising System simulated via umbrella sampling (also known as non boltzmann sampling) with a overlapping windows from N = 15 to 450. Refer    to nucleation.ipynb in analysis/ folder for analysis of the simulation data and free energy construction. [simulaton video](https://youtu.be/6_lvSokWUsw).     
 
-## IMPORTANT POINTS                               
+## NOTES                             
 1. The lattice size, defined in main (int n) is the sidelength of the lattice square (not number of spins). That means that number of spins = n * n.        
 
-2. The resolution of the output video should be the same as the lattice dimensions. The resolution of the output videl is set int "make_video()" function in "src/media.c". In      the ffmpeg commanf simply change the desired size. for example if the lattice is n=50, change the argument to "-s 50x50".         
+2. The resolution of the output video should be the same as the lattice dimensions. The resolution of the output video is set in the function "make_video()" in "src/media.c". The resolution should be defined explicitly in the string with the ffmpeg command. For example if the lattice is n=50, change the resolution as "ffmpeg <args> -s 50x50 <rest_of_the_command>".         
 
 3. "int* simspace" is the memory buffer holding the lattice snapshots which will be turned into a video. It is better to skip some steps before adding a frame to the video to      avoid stack overflow issues.                                           
 
