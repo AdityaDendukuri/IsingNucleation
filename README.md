@@ -11,6 +11,7 @@ $ git clone https://github.com/AdityaDendukuri/IsingNucleation.git
 ```
 2. Create the directories build/ and output/                        
 ``` 
+$ cd IsingNucleation  
 $ mkdir build output                                     
 ```                                    
                                                                     
