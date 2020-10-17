@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/IsingNucl.dir/main.c.o  -o IsingNucl  -L"/mnt/c/Users/Aditya Dendukuri/Documents/projects/IsingNucleation/src" -Wl,-rpath,"/mnt/c/Users/Aditya Dendukuri/Documents/projects/IsingNucleation/src" src/libsrc.a -lm 

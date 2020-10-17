@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsrc.a  CMakeFiles/src.dir/simul.c.o CMakeFiles/src.dir/monte_carlo.c.o CMakeFiles/src.dir/ising_lattice.c.o CMakeFiles/src.dir/util.c.o CMakeFiles/src.dir/media.c.o
+/usr/bin/ranlib libsrc.a
