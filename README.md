@@ -14,7 +14,9 @@ construction [1], nucleus formation [2] with umbrella sampling [1].
                                                                     
 2. Go to build directory and run cmake as follows                   
           ```
-          $ cd build                                               
+          $ cd build
+          ```
+          ```
           $ cmake -C ../ -S .                                      
           ```
           
