@@ -30,6 +30,7 @@ $ make
  ```
  $ ./IsingNucl                                            
  ```
+ Simulation output and video will be saved in output/ .
 ## SIMULATION SETUP AND ANALYSIS                        
 Pleaser refer to "main.c" for the steps to invoke the simulation. There are three experiments pre-coded in "src/simul.c".             
 
