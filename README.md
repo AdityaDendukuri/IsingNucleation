@@ -37,8 +37,7 @@ Pleaser refer to "main.c" for the steps to invoke the simulation. There are thre
 1. run_sim()                                                        
     Classic Metropolis Monte Carlo 2D Ising Lattice Simulation. [simulation video](https://youtu.be/HaPEz-NQ8I4)                
 1. validate_free_energy()                                           
-   Validating simulation by running simulations at various temperatures and comparing the minimum energy of each temperature with the exact solution. Free energy  constructionbased on output of the experiment the python jupyter notebook in analysis/ folder.     
-   "free_energy.ipynb"                                              
+   Validating simulation by running simulations at various temperatures and comparing the minimum energy of each temperature with the exact solution. Free energy validation based on the output of the experiment is shown in the python jupyter notebook in analysis/ folder "free_energy.ipynb".                                              
 1. run_sim_nucleation()                                             
    Simulation of nucleus formation in 2D Ising System simulated via umbrella sampling (also known as non boltzmann sampling) with a overlapping windows from N = 15 to 450. Refer    to nucleation.ipynb in analysis/ folder for analysis of the simulation data and free energy construction. [simulaton video](https://youtu.be/6_lvSokWUsw).     
 
