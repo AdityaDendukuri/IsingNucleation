@@ -15,7 +15,7 @@ $ cd IsingNucleation
 $ mkdir build output                                     
 ```                                    
                                                                     
-3. Go to build directory and run cmake as follows (you only nedd to do this the first time)                   
+3. Go to build directory and run cmake as follows (you only need to do this the first time)                   
 ```
 $ cd build  
 $ cmake -C ../ -S .                                      
