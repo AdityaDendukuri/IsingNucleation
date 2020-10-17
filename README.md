@@ -16,9 +16,7 @@ $ mkdir build output
                                                                     
 3. Go to build directory and run cmake as follows (you only nedd to do this the first time)                   
 ```
-$ cd build
-```  
-```
+$ cd build  
 $ cmake -C ../ -S .                                      
 ```
           
