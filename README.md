@@ -6,13 +6,17 @@ This is a Monte Carlo simulation program for the Ising spin model
 written by Aditya Dendukuri. Simulations include free energy        
 construction [1], nucleus formation [2] with umbrella sampling [1]. 
 
-# INSTRUCTIONS TO RUN                              
-1. Create the directories build/ and output/                        
+# INSTRUCTIONS TO RUN 
+1. Clone the repo
+```
+$ git clone https://github.com/AdityaDendukuri/IsingNucleation.git
+```
+2. Create the directories build/ and output/                        
           ``` 
           $ mkdir build output                                     
           ```                                    
                                                                     
-2. Go to build directory and run cmake as follows                   
+3. Go to build directory and run cmake as follows (you only nedd to do this the first time)                   
           ```
           $ cd build
           ```  
@@ -20,12 +24,12 @@ construction [1], nucleus formation [2] with umbrella sampling [1].
           $ cmake -C ../ -S .                                      
           ```
           
-3. This will generate the makefile. Compile the program by simply   
+4. This will generate the makefile in build/. Compile the program by simply   
    typing:       
           ```
           $ make                                                   
           ```                                                       
-4. Run the executable           
+5. Run the executable           
           ```
           $ ./IsingNucl                                            
           ```
