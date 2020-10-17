@@ -2,7 +2,7 @@
 
 
 ## INTRODUCTION                                
-This is a Monte Carlo simulation program for the Ising spin model written by Aditya Dendukuri. Simulations include free energy construction [1], nucleus formation [2] with umbrella sampling [1]. 
+This is a Monte Carlo simulation program for the Ising spin model. Simulations include free energy construction [1], nucleus formation [2] with umbrella sampling [1]. 
 
 ## INSTRUCTIONS TO RUN 
 1. Clone the repo
