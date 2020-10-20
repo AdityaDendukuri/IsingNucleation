@@ -23,10 +23,10 @@ void main()
     
     //run_sim(LATTICE, n, J, F, beta); // experiment 1
 
-    validate_free_energy(LATTICE, n, J, F); // experiment 2
+    //validate_free_energy(LATTICE, n, J, F); // experiment 2
 
-    //F = -0.08;
-    //run_sim_nucleation(LATTICE, n, J, F, beta); // experiment 3 with field
+    F = 0.08;
+    run_sim_nucleation(LATTICE, n, J, F, beta); // experiment 3 with field
     
     
     free(LATTICE);

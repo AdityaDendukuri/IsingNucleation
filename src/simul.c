@@ -17,8 +17,8 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
     srand(time(0));
     int n_windows = 30;
     int num_spins = n*n;
-    int num_init = 2000;
-    int num_sweeps = 10000;
+    int num_init = 20000;
+    int num_sweeps = 500000;
     int N_tot = 0;
     int N = 0;
     int N_id = 0;
@@ -40,7 +40,7 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
     int* start_state = malloc(sizeof(int)*num_spins);
     int* original_state = malloc(sizeof(int)*num_spins);
     int* tmp_state = malloc(sizeof(int)*num_spins);
-    int* simspace = malloc(sizeof(int)*num_sweeps*n_windows*num_spins/display_steps);
+    //int* simspace = malloc(sizeof(int)*num_sweeps*n_windows*num_spins/display_steps);
     //int* sim_space;
     //uint8_t* image = malloc(n*n);
     //assign initial values to memory 
@@ -125,12 +125,12 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
                 next_sample_chosen = true;
             }
             if(k%display_steps==0) { 
-                memcpy(&simspace[num_spins*l], LATTICE, num_spins*sizeof(int));
+                //memcpy(&simspace[num_spins*l], LATTICE, num_spins*sizeof(int));
                 l++;
             }
             j++;
             k++;
-            if ( j % 1000 == 0) { 
+            if ( j % 50000 == 0) { 
                 printf(" %d ", N); fflush(stdout);
             }
             
@@ -141,7 +141,7 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
         // move window 
         N_window += 15;
     }
-    save_video(simspace, n, l);
+    //save_video(simspace, n, l);
     printf("VIDEO SAVED \n");
     FILE *fp = fopen("../output/mag.txt", "w+"); 
     for(int i = 0; i < num_sweeps * n_windows; i++) { 
@@ -158,7 +158,7 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
     //free(image);
     free(original_state);
     free(adj);
-    free(simspace);
+    //free(simspace);
     fclose(fp);
     
 }

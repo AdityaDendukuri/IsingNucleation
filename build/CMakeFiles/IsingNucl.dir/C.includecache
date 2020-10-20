@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/adenduku/IsingNucleation/headers/simul.h
+
+/home/adenduku/IsingNucleation/main.c
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+stdint.h
+-
+stdbool.h
+-
+time.h
+-
+limits.h
+-
+string.h
+-
+headers/simul.h
+/home/adenduku/IsingNucleation/headers/simul.h
+

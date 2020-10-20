@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.13.4)
+cmake_minimum_required(VERSION 3.13.3)
 project(IsingNucl)
 add_executable(${PROJECT_NAME} main.c)
+set_property(TARGET IsingNucl PROPERTY C_STANDARD 11)
 add_subdirectory(src)
-
 target_include_directories(${PROJECT_NAME} PUBLIC headers/)
 target_link_directories(${PROJECT_NAME} PUBLIC src/)
 target_link_libraries(${PROJECT_NAME} src m)
