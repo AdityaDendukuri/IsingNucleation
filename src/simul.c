@@ -18,7 +18,7 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
     int n_windows = 30;
     int num_spins = n*n;
     int num_init = 20000;
-    int num_sweeps = 500000;
+    int num_sweeps = 50000;
     int N_tot = 0;
     int N = 0;
     int N_id = 0;
@@ -46,7 +46,7 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
     //assign initial values to memory 
     set(cluster_map, -1, num_spins);
     set(mag_space, -1, num_sweeps * n_windows);
-    generate_nucleus(LATTICE, n, N_window + 500);
+    //generate_nucleus(LATTICE, n, J, F, beta);
     memcpy(start_state, LATTICE, n*n*sizeof(int));
     memcpy(original_state, LATTICE, n*n*sizeof(int));
     int k = 0;
@@ -69,7 +69,7 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
         // equilibrate 
         for(int j = 0; j < num_init; j++) { 
             N = largest_cluster_size(LATTICE, adj, cluster_map, n, -1);
-            if ( (N >= lower_bound)&&(N <= upper_bound)) break;
+            if ( (N >= lower_bound/2)&&(N <= upper_bound/2)) break;
             mc_step_boltz(LATTICE, n, beta, J, 0);
         }
         //copy lattice state into two variables and calculate current N
@@ -103,7 +103,6 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
         j = 0;
         over = 0;
         under = 0;
-
         while(j < num_sweeps) { 
             memcpy(tmp_state, LATTICE, n*n*sizeof(int));
             //mc_step_non_boltz(LATTICE,n, beta, J, F, cluster_map, tmpmap,N,N_window, window_size);
@@ -115,10 +114,12 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
                 N = old_n;
             } 
             old_n = N;
-            if(N > N_window) 
+            if(N > N_window) {  
                 over++;
-            else 
+            }
+            else {  
                 under++;
+            }
             mag_space[j + num_sweeps*i] = N;
             if((N >= N_window)&&(N <= upper_bound)) {
                 memcpy(start_state, LATTICE, n*n*sizeof(int));
@@ -133,7 +134,6 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
             if ( j % 50000 == 0) { 
                 printf(" %d ", N); fflush(stdout);
             }
-            
         }
         printf("\nBelow midpoint : %d percent \n",  under);
         printf("Above midpoint : %d percent \n", over);
@@ -141,15 +141,12 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
         // move window 
         N_window += 15;
     }
-    //save_video(simspace, n, l);
     printf("VIDEO SAVED \n");
     FILE *fp = fopen("../output/mag.txt", "w+"); 
     for(int i = 0; i < num_sweeps * n_windows; i++) { 
         fprintf(fp, "%d \n", mag_space[i]);
     }
     printf("DATA SAVED \n");
-
-
     free(mag_space);
     free(cluster_map);
     free(start_state);
@@ -159,9 +156,9 @@ void run_sim_nucleation(int* LATTICE, int n,  float J, float F, float beta) {
     free(original_state);
     free(adj);
     //free(simspace);
-    fclose(fp);
-    
+    fclose(fp);    
 }
+
 void ones(int* LATTICE, int n) { 
     for(int i = 0; i < n*n; i++) { 
         LATTICE[i] =  1;
@@ -189,7 +186,6 @@ void run_sim(int* LATTICE,  int n, float J, float F, float beta) {
     }
     // main simulation
     for(int i = 0; i < num_sweeps; i++) { 
-
         mc_step_boltz(LATTICE,n, beta, J, F);
         uinit = hamiltonian(LATTICE, n, J, F);
         mag = magnetization(LATTICE, n);
@@ -212,6 +208,72 @@ void run_sim(int* LATTICE,  int n, float J, float F, float beta) {
     // free all allocated memory and close all files 
     fclose(fp_mag);
 }
+
+
+void make_nucleus(int* LATTICE,  int n, float J, float F, float beta) { 
+    int num_spins = n*n;
+    FILE *fp_mag = fopen("../output/mag.txt", "w+");
+    int num_sweeps = 3000;
+    int init_steps = 0;
+    int dstep = 1000;
+    int sstep = 1;
+    int video_frequency = 1;
+    float uinit = hamiltonian(LATTICE, n, J, F);
+    float prob = 0.;
+    float delE = 0.;
+    float mag;
+    int* simspace = malloc(sizeof(int)*num_sweeps*num_spins/video_frequency);
+    int* adj = malloc(sizeof(int)*num_spins*4);
+    int* cluster_map = malloc(sizeof(int) * num_spins);
+    int* tmpmap = malloc(sizeof(int) * num_spins);
+    int* tran_state_C = malloc(sizeof(int) * num_sweeps/video_frequency);
+    int* tran_state_ensmb_mp = malloc(sizeof(int)*num_sweeps*num_spins/video_frequency);
+    int k = 0;
+    int N_window = 100;
+    generate_nucleus(LATTICE, n, N_window);
+    // trial steps to get to equilibrium
+     // equilibrate 
+    int lower_bound = (int)(N_window - 15/2);
+    int upper_bound = (int)(N_window + 15/2);
+    int N = 0;
+    for(int j = 0; j < 10000; j++) { 
+        N = largest_cluster_size(LATTICE, adj, cluster_map, n, -1);
+        if ( (N >= lower_bound/2)&&(N <= upper_bound/2)) break;
+        mc_step_boltz(LATTICE, n, beta, J, 0);
+    }
+    // main simulation
+    for(int i = 0; i < num_sweeps; i++) { 
+        mc_step_boltz(LATTICE,n, beta, J, F);
+        uinit = hamiltonian(LATTICE, n, J, F);
+        mag = magnetization(LATTICE, n);
+        N = largest_cluster_size(LATTICE, adj, cluster_map, n, -1);
+        tran_state_C[k] = get_largest_id(cluster_map, tmpmap, n);
+        memcpy(&tran_state_ensmb_mp[k*num_spins], cluster_map, num_spins*sizeof(int));
+        //display attributes
+        if(i%dstep == 0) {    
+            num_up(LATTICE, n);
+            printf("Sweep #%d -> U :%f | N:%d \n", i, uinit, N);
+	    }
+        // save data 
+        if(i%sstep==0) {  
+            fprintf(fp_mag, "%f \n", mag);
+        }
+        if(i%video_frequency==0) { 
+            memcpy(&simspace[num_spins*k], LATTICE, num_spins*sizeof(int));
+            k++;
+        }
+    }
+    //save simulation video
+    int N_id = get_largest_id(cluster_map, tmpmap, n);
+    save_video_clr(simspace, n, k, tran_state_ensmb_mp, tran_state_C);
+    // free all allocated memory and close all files 
+    free(simspace);
+    free(cluster_map);
+    free(adj);
+    free(tmpmap);
+    fclose(fp_mag);
+}
+
 
 void validate_free_energy(int* LATTICE, int n, int J, int F) { 
     int num_spins = n*n;

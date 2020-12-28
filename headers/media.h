@@ -14,5 +14,6 @@
 
 void save_snapshot(int *LATTICE, uint8_t* tmp,  int n, int i);
 void save_video(int* simspace, int n, int nsteps);
+void save_video_clr(int* simspace, int n, int nsteps, int* cluster_map, int* N_id);
 
 #endif

@@ -46,3 +46,40 @@ void save_video(int* simspace, int n, int nsteps) {
     pclose(pipeout);
     free(frame); 
 }
+
+
+void save_video_clr(int* simspace, int n, int nsteps, int* cluster_map, int* N_id) { 
+    int n2 = n*n;
+    int k = 0;
+    uchar *frame = malloc(sizeof(uchar) * n2 * 3);
+    FILE *pipeout = popen("ffmpeg -y -f rawvideo -vcodec rawvideo -pix_fmt rgb24 -s 300x300 -r 60 -i - -f mp4 -q:v 5 -an -vcodec mpeg4 ../output/output.mp4", "w");     
+    for(int i = 0; i < nsteps; i++) {
+        int *simsspace_at_i = simspace + i*n2;
+        int *cmap_at_i = cluster_map + i*n2;
+
+        for(int j = 0; j < n*n; j++) { 
+            k = j * 3;
+            if ((simsspace_at_i[j] == -1)&&(cmap_at_i[j]!=N_id[i])) {
+                frame[k + 0] = 0;
+                frame[k + 1] = 0;
+                frame[k + 2] = 0;
+            } 
+            else if (cmap_at_i[j]==N_id[i]) {
+                frame[k + 0] = 255;
+                frame[k + 1] = 0;
+                frame[k + 2] = 0;
+            
+            }
+            else { 
+                frame[k + 0] = 255;
+                frame[k + 1] = 255;
+                frame[k + 2] = 255;
+                
+            }
+        }
+        fwrite(frame, 1, n*n*3, pipeout);
+    }
+    fflush(pipeout);
+    pclose(pipeout);
+    free(frame); 
+}

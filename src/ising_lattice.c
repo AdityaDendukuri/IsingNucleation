@@ -141,7 +141,7 @@ int largest_cluster_size(int* LATTICE, int* adj, int* cluster_map, int n, int sp
     }
     return cluster_size;
 }   
-
+             /*             */
 int get_largest_id(int* cluster_map, int* tmpmap, int n) { 
     memset(tmpmap, 0, sizeof(int)*n*n);
     for(int i = 0; i < n*n; i++) { 
