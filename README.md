@@ -1,5 +1,3 @@
-Here's the improved version:
-
 ## INTRODUCTION
 
 This is a Monte Carlo simulation program for the Ising spin model. Simulations include free energy construction [1], nucleus formation [2] with umbrella sampling [1]. The program is written in C, with ffmpeg used for the generation of simulation videos. Please ensure ffmpeg is installed on your system (can be found [here](https://ffmpeg.org/download.html)). Python is used to visualize the thermodynamics of the system via Jupyter notebooks for two specific experiments for validation, which can be found in `analysis/`.
