@@ -4,4 +4,4 @@
 *.ipynb  text
 
 # To ignore it use below
-# *.ipynb linguist-documentation
+*.ipynb linguist-documentation
