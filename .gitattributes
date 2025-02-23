@@ -5,3 +5,4 @@
 
 # To ignore it use below
 *.ipynb linguist-documentation
+MAKEFILE linguist-documentation
