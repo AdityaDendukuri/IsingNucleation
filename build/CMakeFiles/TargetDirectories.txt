@@ -1,6 +1,0 @@
-/home/adiden/projects/IsingNucleation/build/CMakeFiles/IsingNucl.dir
-/home/adiden/projects/IsingNucleation/build/CMakeFiles/edit_cache.dir
-/home/adiden/projects/IsingNucleation/build/CMakeFiles/rebuild_cache.dir
-/home/adiden/projects/IsingNucleation/build/src/CMakeFiles/src.dir
-/home/adiden/projects/IsingNucleation/build/src/CMakeFiles/edit_cache.dir
-/home/adiden/projects/IsingNucleation/build/src/CMakeFiles/rebuild_cache.dir
