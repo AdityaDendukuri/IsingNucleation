@@ -1,4 +1,4 @@
-*** THIS PROJECT HAS BEEN ABSORBED INTO MY NUMERICAL ANALYSIS PACKAGE [NUMERICS](https://github.com/AdityaDendukuri/numerics). See numerics/apps/ising/"
+# ***THIS PROJECT HAS BEEN ABSORBED INTO MY NUMERICAL ANALYSIS PACKAGE [NUMERICS](https://github.com/AdityaDendukuri/numerics). See numerics/apps/ising/"***
 
 ## INTRODUCTION
 
